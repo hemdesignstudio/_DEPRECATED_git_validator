@@ -10,7 +10,7 @@ clone or download
 cd git_validator
 ```
 
-### configure
+### Configure
 
 Use vim or Vscode or any editor your like
 
@@ -26,10 +26,14 @@ branch_prefixes = ["feature", "bugfix", "test"]
 default_branches = ["master", "dev", "staging"]
 ```
 
-add to project
+### Add to project
 
 ```sh
 $ mv prepare-commit-msg {path_to_your_project}/.git/hooks
+```
+
+```sh
+$ chmod +x {path_to_your_project}/.git/hooks/prepare-commit-msg
 ```
 
 enjoy !
