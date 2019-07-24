@@ -6,10 +6,11 @@ jira_code = "BCD"
 commit_msg_filepath = sys.argv[1]
 
 branch = check_output(["git", "symbolic-ref", "--short", "HEAD"]).strip()
-branch_regex = "(feature|bugfix)\/(\w+)"
+branch_regex = "(feature|bugfix|test)\/(\w+)"
 msg_regex = "\[{}-(\d+)\]: (\w+)".format(jira_code)
 
-if re.match(branch_regex, branch):
+
+if re.match(branch_regex, branch) or branch == "master":
     with open(commit_msg_filepath, "r+") as fh:
         commit_msg = fh.read()
         if re.match(msg_regex, commit_msg):
@@ -24,6 +25,6 @@ if re.match(branch_regex, branch):
                 )
             )
             sys.exit(1)
-elif branch != "master" and branch != "dev":
+else:
     print('Incorrect branch name, branch must start with "feature/" or "bugfix/"')
     sys.exit(1)
