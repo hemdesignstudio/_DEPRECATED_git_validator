@@ -4,13 +4,14 @@ from subprocess import check_output
 
 jira_code = "BCD"
 commit_msg_filepath = sys.argv[1]
+default_branches = ["master", "dev", "staging"]
 
 branch = check_output(["git", "symbolic-ref", "--short", "HEAD"]).strip()
 branch_regex = "(feature|bugfix|test)\/(\w+)"
 msg_regex = "\[{}-(\d+)\]: (\w+)".format(jira_code)
 
 
-if re.match(branch_regex, branch) or branch == "master":
+if re.match(branch_regex, branch) or branch in default_branches:
     with open(commit_msg_filepath, "r+") as fh:
         commit_msg = fh.read()
         if re.match(msg_regex, commit_msg):
