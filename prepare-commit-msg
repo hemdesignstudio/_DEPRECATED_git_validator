@@ -25,7 +25,9 @@ default_branches = ["master"]
 
 commit_msg_filepath = sys.argv[1]
 
-branch = check_output(["git", "symbolic-ref", "--short", "HEAD"]).strip()
+branch = (
+    check_output(["git", "symbolic-ref", "--short", "HEAD"]).decode("utf-8").strip()
+)
 branch_regex = "({})\/(\w+)".format("|".join(branch_prefixes))
 msg_regex = "\[{}-(\d+)\]:\s?(\w+)".format(jira_code)
 
