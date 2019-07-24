@@ -12,6 +12,10 @@ cd git_validator
 
 ### configure
 
+Use vim or Vscode or any editor your like
+
+and open "prepare-commit-msg" file
+
 ```py
 jira_code = "BCD"
 
