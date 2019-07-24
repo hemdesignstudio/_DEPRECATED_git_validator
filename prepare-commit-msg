@@ -2,6 +2,13 @@
 """Git prepare-commit-msg hook,
  checks if the branch naming is correct as well validates the commit message format
 
+Examples:
+    correct branch naming:
+        "feature/new_feature"
+        "bugfix/some_bug_fix"
+
+    correct commit message format:
+        "[BCD-123]: adds a new field"
 
 """
 import sys, re
@@ -20,7 +27,7 @@ commit_msg_filepath = sys.argv[1]
 
 branch = check_output(["git", "symbolic-ref", "--short", "HEAD"]).strip()
 branch_regex = "({})\/(\w+)".format("|".join(branch_prefixes))
-msg_regex = "\[{}-(\d+)\]: (\w+)".format(jira_code)
+msg_regex = "\[{}-(\d+)\]:\s?(\w+)".format(jira_code)
 
 
 if re.match(branch_regex, branch) or branch in default_branches:
