@@ -26,7 +26,9 @@ default_branches = ["master"]
 commit_msg_filepath = sys.argv[1]
 
 branch = (
-    check_output(["git", "symbolic-ref", "--short", "HEAD"]).decode("utf-8").strip()
+    check_output(["git", "symbolic-ref", "--short", "HEAD"])
+    .decode("utf-8")
+    .strip()
 )
 branch_regex = "({})\/(\w+)".format("|".join(branch_prefixes))
 msg_regex = "\[{}-(\d+)\]:\s?(\w+)".format(jira_code)
@@ -49,8 +51,9 @@ if re.match(branch_regex, branch) or branch in default_branches:
             sys.exit(1)
 else:
     print(
-        "Incorrect branch name, branch must start with '{}'".format(
-            ", ".join(branch_prefixes)
+        "Incorrect branch name {branch},\
+        branch must start with '{branches}'".format(
+            branch=branch, branches=", ".join(branch_prefixes)
         )
     )
     sys.exit(1)
