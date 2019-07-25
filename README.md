@@ -37,7 +37,7 @@ $ cp prepare-commit-msg {path_to_your_project}/.git/hooks
 $ chmod +x {path_to_your_project}/.git/hooks/prepare-commit-msg
 ```
 
-## Formating and linting before commit
+## Formating and linting before commit (Python)
 
 Black config
 
