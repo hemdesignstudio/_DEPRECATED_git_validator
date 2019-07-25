@@ -7,7 +7,7 @@ Git prepare-commit-msg hook, checks if the branch naming is correct as well vali
 Go to the root of your directory and run
 
 ```sh
-wget -o install.sh https://raw.githubusercontent.com/hemdesignstudio/git_validator/master/install.sh
+wget https://raw.githubusercontent.com/hemdesignstudio/git_validator/master/install.sh
 ```
 
 ```sh
