@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pre-commit = "*"
+flake8 = "*"
 
 [packages]
 
