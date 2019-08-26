@@ -30,24 +30,24 @@ branch = (
     .decode("utf-8")
     .strip()
 )
-branch_regex = "{}-(\d+)\|({})\/(\w+)".format(
-    jira_code, "|".join(branch_prefixes)
+branch_regex = "({})\/\({}-(\d+)\).(\w+)".format(
+    "|".join(branch_prefixes), jira_code
 )
 
 
 if re.match(branch_regex, branch) or branch in default_branches:
     with open(commit_msg_filepath, "r+") as fh:
         print(branch)
-        jira_issue = branch.split("|")[0]
+        jira_issue = branch.split("/")[1].split(".")[0]
         commit_msg = fh.read()
         fh.seek(0, 0)
-        fh.write("[{}]: {}".format(jira_issue, commit_msg))
+        fh.write("{}: {}".format(jira_issue, commit_msg))
 else:
     print(
         "Incorrect branch name {branch},\
         branch must start with issue number\
         and branch type in this format.\
-        e.g. [BCD-192]: feature/install_script".format(
+        e.g. feature/(BCD-192).install_script".format(
             branch=branch
         )
     )
