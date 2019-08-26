@@ -47,7 +47,7 @@ else:
         "Incorrect branch name {branch},\
         branch must start with issue number\
         and branch type in this format.\
-        e.g. feature/install-script/BCD-192".format(
+        e.g. feature/BCD-192/install-script/".format(
             branch=branch
         )
     )

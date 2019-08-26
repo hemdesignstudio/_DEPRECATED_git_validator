@@ -45,10 +45,10 @@ default_branches = ["master", "dev", "staging"]
 ## Branch name format
 
 ```
-    prefix/(JIRA-No).branch-name
+    prefix/JIRA-No/branch-name
     e.g.
-        feature/(BCD-192).install-script-enhancement
-        bugfix/(BCD-195).prepare-msg-commit-fix
+        feature/BCD-192/install-script-enhancement
+        bugfix/BCD-195/prepare-msg-commit-fix
 ```
 
 enjoy !
