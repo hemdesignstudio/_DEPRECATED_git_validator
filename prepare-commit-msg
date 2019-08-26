@@ -41,7 +41,7 @@ if re.match(branch_regex, branch) or branch in default_branches:
         jira_issue = branch.split("|")[0]
         commit_msg = fh.read()
         fh.seek(0, 0)
-        fh.write("{}: {}".format(jira_issue, commit_msg))
+        fh.write("[{}]: {}".format(jira_issue, commit_msg))
 else:
     print(
         "Incorrect branch name {branch},\
