@@ -39,7 +39,7 @@ jira_code = "BCD"
 branch_prefixes = ["feature", "bugfix", "test"]
 
 # git default branches
-default_branches = ["master", "dev", "staging"]
+default_branches = ["master", "dev", "development", "staging"]
 ```
 
 ## Branch name format
