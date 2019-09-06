@@ -27,8 +27,6 @@ branch_prefixes = config["branch_prefixes"]
 # git default branches
 default_branches = config["default_branches"]
 
-print(default_branches)
-
 commit_msg_filepath = sys.argv[1]
 
 branch = (

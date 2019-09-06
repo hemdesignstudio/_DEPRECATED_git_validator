@@ -1,0 +1,5 @@
+{
+  "jira_code": "BCD",
+  "default_branches": ["master", "dev", "test"],
+  "branch_prefixes": ["feature", "bugfix", "test"]
+}
