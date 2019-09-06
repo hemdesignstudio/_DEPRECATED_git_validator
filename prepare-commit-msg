@@ -4,24 +4,30 @@
 
 Examples:
     correct branch naming:
-        "BCD-180|feature/new_feature"
-        "BCD-181|bugfix/some_bug_fix"
+        "feature/BCD-180/new_feature"
+        "bugfix/BCD-181/some_bug_fix"
 
     correct commit message format:
         "[BCD-123]: adds a new field"
 
 """
-import sys, re
+import sys, re, json
 from subprocess import check_output
 
-jira_code = "BCD"
+config = {}
+with open(".git-validator-config.json") as json_file:
+    config = json.load(json_file)
+
+
+jira_code = config["jira_code"]
 
 # prefixes
-branch_prefixes = ["feature", "bugfix", "test"]
+branch_prefixes = config["branch_prefixes"]
 
 # git default branches
-default_branches = ["master"]
+default_branches = config["default_branches"]
 
+print(default_branches)
 
 commit_msg_filepath = sys.argv[1]
 
@@ -34,13 +40,31 @@ branch_regex = "({})\/{}-(\d+)\/(\w+)".format(
     "|".join(branch_prefixes), jira_code
 )
 
+msg_regex = "\[{}-(\d+)\]:\s?(\w+)".format(jira_code)
 
-if re.match(branch_regex, branch) or branch in default_branches:
+if re.match(branch_regex, branch):
     with open(commit_msg_filepath, "r+") as fh:
         jira_issue = branch.split("/")[1]
         commit_msg = fh.read()
         fh.seek(0, 0)
         fh.write("[{}]: {}".format(jira_issue, commit_msg))
+
+elif branch in default_branches:
+    with open(commit_msg_filepath, "r+") as fh:
+        commit_msg = fh.read()
+        if re.match(msg_regex, commit_msg):
+            fh.seek(0, 0)
+            fh.write("%s" % (commit_msg))
+        else:
+            print(
+                "Incorrect commit message format,\
+                message must start with '[{code}-no]: \
+                ' e.g. '[{code}-150]: '".format(
+                    code=jira_code
+                )
+            )
+            sys.exit(1)
+
 else:
     print(
         "Incorrect branch name {},\
