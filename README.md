@@ -26,20 +26,14 @@ chmod +x install.sh
 ### Configure
 
 Use vim or Vscode or any editor your like and go to
+and open ".git-validator-config.json" file and change accordingly
 
-    {path_to_your_project}/.git/hooks/
-
-and open "prepare-commit-msg" file
-
-```py
-# jira board code, BCD for backend, FRON for Frontend
-jira_code = "BCD"
-
-# prefixes
-branch_prefixes = ["feature", "bugfix", "test"]
-
-# git default branches
-default_branches = ["master", "dev", "development", "staging"]
+```
+{
+  "jira_code": "BCD",
+  "default_branches": ["master", "dev", "test"],
+  "branch_prefixes": ["feature", "bugfix", "test"]
+}
 ```
 
 ## Branch name format
