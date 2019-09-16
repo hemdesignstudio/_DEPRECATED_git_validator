@@ -13,6 +13,10 @@ function JiraGitValidator {
 		* ) echo "Please answer yes or no."; JiraGitValidator;
 	esac
 
+    echo "adding git validator configuration JSON ... "
+    cp git_validator/.git-validator-config.json .
+
+    echo "installing JIRA validator ... "
     cp git_validator/prepare-commit-msg .git/hooks
     chmod +x .git/hooks/prepare-commit-msg
     echo "${green} Jira validator successfully installed ... ${reset}"
